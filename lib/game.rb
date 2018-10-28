@@ -24,8 +24,9 @@ class Game
     else
       @bad_letters << bukva
       @errors += 1
-      @status = -1  if @errors >= 7
     end
+
+    @status = -1  if @errors >= 7
   end
 
   def ask_next_letter
