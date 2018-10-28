@@ -37,10 +37,8 @@ class Game
       letter = STDIN.gets.encode("UTF-8").chomp.downcase.to_s
     end
 
-    case letter
-    when 'ё' then letter = "е"
-    when 'й' then letter = "и"
-    end
+    letter == 'ё' ? letter = 'е' : letter
+    letter == 'й' ? letter = 'и' : letter
 
     next_step(letter) unless @status == -1 || @status == 1
   end

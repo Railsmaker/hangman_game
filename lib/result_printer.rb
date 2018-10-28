@@ -41,7 +41,7 @@ class ResultPrinter
     result = ''
 
     for i in letters do
-      good_letters.include?(i) ? result += '#{i} ' : result += '__ '
+      good_letters.include?(i) ? result += "#{i} "  : result += "__ "
     end
 
     return result
