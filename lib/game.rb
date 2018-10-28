@@ -1,6 +1,8 @@
 class Game
   attr_accessor :errors, :letters, :good_letters, :bad_letters, :status
 
+  NUMBER_GAME_ERRORS = 7
+
   def initialize(slovo)
     @letters = get_letters(slovo)
     @good_letters = []
@@ -26,7 +28,7 @@ class Game
     end
 
     @status = 1 if @good_letters.uniq.sort == @letters.uniq.sort
-    @status =-1 if @errors >= 7
+    @status =-1 if @errors >= NUMBER_GAME_ERRORS
   end
 
   def ask_next_letter
