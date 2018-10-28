@@ -22,10 +22,9 @@ class ResultPrinter
 
   def print_status(game)
     cls
+
     puts "\n\nСлово: " + get_word_for_print(game.letters, game.good_letters).to_s
-
     puts "Ошибки: " + game.bad_letters.join(", ").to_s
-
     print_viselitsa(game.errors)
 
     case game.status
@@ -36,18 +35,13 @@ class ResultPrinter
     else
       puts "У вас осталось ошибок: (7 - #{game.errors})"
     end
-
   end
 
   def get_word_for_print(letters, good_letters)
-    result = ""
+    result = ''
 
     for i in letters do
-      if good_letters.include?(i)
-        result += "#{i} "
-      else
-        result += "__ "
-      end
+      good_letters.include?(i) ? result += '#{i} ' : result += '__ '
     end
 
     return result
