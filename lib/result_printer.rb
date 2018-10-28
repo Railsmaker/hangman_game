@@ -24,27 +24,21 @@ class ResultPrinter
 
   def print_status(game)
     cls
-
-    puts
-    puts "Слово: #{get_word_for_print(game.letters, game.good_letters)}"
+    puts "\n\nСлово: #{get_word_for_print(game.letters, game.good_letters)}"
     puts "Ошибки: #{game.bad_letters.join(", ")}"
 
-    # Обратите внимание, что вызов метода print_viselitsa никак не поменялся,
-    # поменялась только его реализация.
     print_viselitsa(game.errors)
 
-    if game.status == -1
+    case game.status
+    when -1
+      puts "Вы проиграли :( \nЗагаданное слово было: #{game.letters.join('')}"
       puts
-      puts "Вы проиграли :("
-      puts "Загаданное слово было: " + game.letters.join("")
-      puts
-    elsif game.status == 1
-      puts
-      puts "Поздравляем, вы выиграли!"
-      puts
+    when 1
+      puts "\nПоздравляем, вы выиграли!\n\n"
     else
-      puts "У вас осталось ошибок: " + (7 - game.errors).to_s
+      puts "У вас осталось ошибок: (7 - #{game.errors})"
     end
+
   end
 
   def get_word_for_print(letters, good_letters)

@@ -25,3 +25,4 @@ while game.status == 0
 end
 
 printer.print_status(game)
+
