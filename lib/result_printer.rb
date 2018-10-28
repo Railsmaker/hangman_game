@@ -7,9 +7,7 @@ class ResultPrinter
       file_name = current_path + "/image/#{counter}.txt"
 
       if File.exist?(file_name)
-        file = File.new(file_name, "r:UTF-8")
-        @status_image << file.read
-        file.close
+        File.open(file_name, 'r:UTF-8') {|f|  @status_image << f.read }
       else
         @status_image << "\n [ изображение не найдено ] \n"
       end
@@ -31,8 +29,7 @@ class ResultPrinter
 
     case game.status
     when -1
-      puts "Вы проиграли :( \nЗагаданное слово было: #{game.letters.join('')}"
-      puts
+      puts "Вы проиграли :( \nЗагаданное слово было: #{game.letters.join('')}\n\n"
     when 1
       puts "\nПоздравляем, вы выиграли!\n\n"
     else
