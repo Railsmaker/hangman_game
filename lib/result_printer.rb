@@ -42,9 +42,9 @@ class ResultPrinter
   def get_word_for_print(letters, good_letters)
     result = ""
 
-    for item in letters do
-      if good_letters.include?(item)
-        result += item + " "
+    for i in letters do
+      if good_letters.include?(i)
+        result += "#{i} "
       else
         result += "__ "
       end
