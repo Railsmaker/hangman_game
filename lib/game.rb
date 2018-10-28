@@ -20,13 +20,13 @@ class Game
 
     if @letters.include?(bukva)
       @good_letters << bukva
-      @status = 1 if @good_letters.uniq.sort == @letters.uniq.sort
     else
       @bad_letters << bukva
       @errors += 1
     end
 
-    @status = -1  if @errors >= 7
+    @status = 1 if @good_letters.uniq.sort == @letters.uniq.sort
+    @status =-1 if @errors >= 7
   end
 
   def ask_next_letter
