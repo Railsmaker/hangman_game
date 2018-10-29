@@ -5,7 +5,6 @@ class ResultPrinter
     counter = 0
     while counter <= 7
       file_name = current_path + "/image/#{counter}.txt"
-
       if File.exist?(file_name)
         File.open(file_name, 'r:UTF-8') {|f|  @status_image << f.read }
       else
@@ -22,7 +21,6 @@ class ResultPrinter
 
   def print_status(game)
     cls
-
     puts "\n\nСлово: " + get_word_for_print(game.letters, game.good_letters).to_s
     puts "Ошибки: " + game.bad_letters.join(", ").to_s
     print_viselitsa(game.errors)
@@ -39,11 +37,9 @@ class ResultPrinter
 
   def get_word_for_print(letters, good_letters)
     result = ''
-
     for i in letters do
       good_letters.include?(i) ? result += "#{i} "  : result += "__ "
     end
-
     return result
   end
 
