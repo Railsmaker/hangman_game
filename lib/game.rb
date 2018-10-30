@@ -1,41 +1,61 @@
 class Game
-  attr_accessor :errors, :letters, :good_letters, :bad_letters, :status
-  NUMBER_GAME_ERRORS = 7
+  attr_reader :errors, :letters, :good_letters, :bad_letters, :status
+
+  MAX_GAME_ERRORS = 7
 
   def initialize(slovo)
     @letters = get_letters(slovo)
     @good_letters = []
     @bad_letters = []
-    @status = 0
+    @status = :in_progress
     @errors = 0
   end
 
-  def get_letters(slovo)
-    return slovo.encode('UTF-8').split("") unless slovo.to_s.empty?
-    abort "Загаданное слово отсутствует, нечего отгадывать. Закрываемся"
+  def solved?
+    @good_letters.uniq.sort == @letters.uniq.sort
   end
 
-  def next_step(bukva)
-    return if @good_letters.include?(bukva) || @bad_letters.include?(bukva)
+  def letter_repeated?(letter)
+    @good_letters.include?(letter) || @bad_letters.include?(letter)
+  end
+
+  def max_errors?
+    @errors >= MAX_GAME_ERRORS
+  end
+
+  def get_letters(slovo)
+    if slovo.to_s.empty?
+      abort "Загаданное слово отсутствует, нечего отгадывать. Закрываемся"
+    end
+    slovo.encode('UTF-8').split("")
+  end
+
+  def next_step(letter)
+    return if letter_repeated?(letter)
     
-    if @letters.include?(bukva)
-      @good_letters << bukva
+    if @letters.include?(letter)
+      @good_letters << letter
     else
-      @bad_letters << bukva
+      @bad_letters << letter
       @errors += 1
     end
-    @status = 1 if @good_letters.uniq.sort == @letters.uniq.sort
-    @status =-1 if @errors >= NUMBER_GAME_ERRORS
+
+    @status = :won  if solved?
+    @status = :lost if max_errors?
   end
 
   def ask_next_letter
     puts "\nВведите следующую букву"
+
     letter = ""
     while letter == ""
-      letter = STDIN.gets.encode("UTF-8").chomp.downcase.to_s
+      letter = STDIN.gets.encode("UTF-8").chomp.to_s
+      letter.downcase!
     end
-    letter == 'ё' ? letter = 'е' : letter
-    letter == 'й' ? letter = 'и' : letter
-    next_step(letter) unless @status == -1 || @status == 1
+
+    letter.gsub!("ё","е")
+    letter.gsub!("й","и")
+
+    next_step(letter)
   end
 end
