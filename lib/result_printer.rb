@@ -4,7 +4,7 @@ class ResultPrinter
     current_path = File.dirname(__FILE__)
     counter = 0
 
-    while counter <= 7
+    while counter <= Game::MAX_GAME_ERRORS
       file_name = current_path + "/image/#{counter}.txt"
 
       if File.exist?(file_name)
