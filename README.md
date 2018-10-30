@@ -1,5 +1,7 @@
 ### GAME VISELITSA 
 Игра "Виселица" написана на языке RUBY.<br />
+<img src="https://image.winudf.com/v2/image/Y29tLmsxNy5WaXNlbGl0c2FQbHVzX3NjcmVlbl8xMV93bWc1dDV1Yw/screen-11.jpg?h=800&fakeurl=1&type=.jpg" width="357">
+
 
 **Правила игры:**  В ходе игры, вы должны отгадать секретное слово,
 указывая правильную букву. <br>
