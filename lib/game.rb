@@ -11,6 +11,13 @@ class Game
     @errors = 0
   end
 
+  def get_letters(slovo)
+    if slovo.to_s.empty?
+      abort "Загаданное слово отсутствует, нечего отгадывать. Закрываемся"
+    end
+    slovo.encode('UTF-8').split("")
+  end
+
   def solved?
     @good_letters.uniq.sort == @letters.uniq.sort
   end
@@ -21,13 +28,6 @@ class Game
 
   def max_errors?
     @errors >= MAX_GAME_ERRORS
-  end
-
-  def get_letters(slovo)
-    if slovo.to_s.empty?
-      abort "Загаданное слово отсутствует, нечего отгадывать. Закрываемся"
-    end
-    slovo.encode('UTF-8').split("")
   end
 
   def next_step(letter)
