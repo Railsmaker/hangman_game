@@ -23,6 +23,6 @@ ruby main.rb
 
 ##
 <h4> Об авторе: </h4>
-Alexey V.Ryapisov <a href="https://raysmaker.github.io/person">Raysmaker</a>
+Alexey V.Ryapisov: <a href="https://raysmaker.github.io/cv/">Raysmaker</a>
 
 
